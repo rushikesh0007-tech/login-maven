@@ -44,5 +44,15 @@ jobs:
     - name: Install dependencies
       run: mvn install -DskipTests
 
-    - name: Run tests with Chrome
-      run: mvn test
+    - name: Run tests with Chrome and generate reports
+      run: mvn test -Dsurefire.reportFormat=xml
+
+    - name: Publish Test Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: target/surefire-reports/*.xml
+
+    - name: Notify build success
+      if: success()
+      run: echo "Test cases passed successfully!"

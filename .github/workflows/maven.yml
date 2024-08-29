@@ -22,6 +22,18 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
+    - name: Install Chrome browser
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Install ChromeDriver
+      run: |
+        sudo apt-get install -yqq unzip
+        wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+        sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
+
     - name: Cache Maven packages
       uses: actions/cache@v3
       with:
@@ -32,5 +44,5 @@ jobs:
     - name: Install dependencies
       run: mvn install -DskipTests
 
-    - name: Run tests
+    - name: Run tests with Chrome
       run: mvn test

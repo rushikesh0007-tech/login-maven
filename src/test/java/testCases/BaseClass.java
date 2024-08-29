@@ -16,15 +16,17 @@ public class BaseClass {
     @BeforeClass
     public void setup() {
         // Set up Chrome options
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // Run in headless mode
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
+		/*
+		 * ChromeOptions options = new ChromeOptions();
+		 * options.addArguments("--headless"); // Run in headless mode
+		 * options.addArguments("--disable-gpu");
+		 * options.addArguments("--window-size=1920,1080");
+		 * options.addArguments("--no-sandbox");
+		 * options.addArguments("--disable-dev-shm-usage");
+		 */
         // Initialize the Chrome driver
-        driver = new ChromeDriver(options);
+       // driver = new ChromeDriver(options);
+        driver=new ChromeDriver();
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("https://demo.livis.ai/auth/login");

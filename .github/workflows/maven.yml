@@ -48,10 +48,11 @@ jobs:
       run: mvn test -Dsurefire.reportFormat=xml
 
     - name: Publish Test Report
+      if: always()
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: target/surefire-reports/*.xml
+        path: target/surefire-reports
 
     - name: Notify build success
       if: success()

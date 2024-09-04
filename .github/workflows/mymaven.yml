@@ -40,5 +40,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-reports
-          path: livis/target/surefire-reports/
+          path: login-maven/target/surefire-reports/
 
